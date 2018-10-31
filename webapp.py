@@ -14,7 +14,9 @@ myList[]
    for State in counties
     if county["State"] in myList[]:
      myList[]=county["State"] 
-    for 
+    for State in myList[]:
+     options += Markup("<option value=\"" + State + "\">" + State + "</option>")
+     
   
    
     
