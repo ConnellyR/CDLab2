@@ -3,3 +3,7 @@ import os
 import json
 
  app = Flask(__name__)
+
+ @app.route("/")
+ def render_home():
+    return render_template('home.html')
