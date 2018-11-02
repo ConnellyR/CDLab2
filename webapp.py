@@ -1,33 +1,41 @@
-frome flask import Flask, request,Markup,render_template,flash, Markup
+from flask import Flask, request,Markup,render_template,flash, Markup
 import os
 import json
 
- app = Flask(__name__)
+app = Flask(__name__)
 
- @app.route("/")
- def render_home():
-  with open('county_demographics.json') as demographics_data:
+@app.route("/")
+def render_home():
+    with open('county_demographics.json') as demographics_data:
         counties = json.load(demographics_data)
-  if 'State' in request.args:
-      State=(request.args['State'])
-          return render_template('home.html', options=get_state_options(counties), funFact=funFact(State))
-  return render_template('home.html', options=get_state_options(counties))
+    if 'State' in request.args:
+        State=(request.args['State'])
+        return render_template('home.html', options=get_state_options(counties), funFact=funFact(State))
+    return render_template('home.html', options=get_state_options(counties))
 def get_state_options(counties):
-myList=[]
-   for State in counties:
-    if county["State"] in myList:
-     myList=county["State"] 
+    myList=[]
+    for county in counties:
+        if not county["State"] in myList:
+            myList.append(county["State"] )
+    options=""
     for State in myList:
-     options += Markup("<option value=\"" + State + "\">" + State + "</option>")
-return options
+        options += Markup("<option value=\"" + State + "\">" + State + "</option>")
+    return options
   
 def funFact(State):
+    with open('county_demographics.json') as demographics_data:
+        counties = json.load(demographics_data)
     first= counties [0]["County"]
-     for counties in State:
-          if county["County"]< first:
-               first= county["County"]
-     return first
- 
+    for counties in State:
+        if county["County"]< first:
+            first= county["County"]
+    return first
+    
+if __name__=="__main__":
+    app.run(debug=True)
+    
+    
+  
      
    
   
