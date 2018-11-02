@@ -8,7 +8,7 @@ import json
  def render_home():
   with open('county_demographics.json') as demographics_data:
         counties = json.load(demographics_data)
-    return render_template('home.html')
+    return render_template('home.html', options=get_state_options(counties))
 def get_state_options(counties):
 myList=[]
    for State in counties:
@@ -18,5 +18,14 @@ myList=[]
      options += Markup("<option value=\"" + State + "\">" + State + "</option>")
 return options
   
+def funFact(State):
+  first= counties [0]["County"]
+  for counties in State:
+   if county["County"]< first:
+    first= county["County"]
+    return first
+ 
+     
    
+  
     
