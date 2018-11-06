@@ -29,12 +29,16 @@ def funFact(State):
     for county in counties:
         if county["County"]< first and county["State"]== State:
             first= county["County"]
-    return first
+    last= counties [0]["County"]
+    for county in counties:
+        if county["County"]> last and  county["State"]== State:
+            last= county["County"]
+    return first + last
     
 if __name__=="__main__":
     app.run(debug=True)
     
-    
+
   
      
    
