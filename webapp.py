@@ -26,8 +26,8 @@ def funFact(State):
     with open('county_demographics.json') as demographics_data:
         counties = json.load(demographics_data)
     first= counties [0]["County"]
-    for counties in State:
-        if county["County"]< first:
+    for county in counties:
+        if county["County"]< first and county["State"]== State:
             first= county["County"]
     return first
     
