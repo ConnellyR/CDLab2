@@ -33,7 +33,7 @@ def funFact(State):
     for county in counties:
         if county["County"]> last and  county["State"]== State:
             last= county["County"]
-    return first + last
+    return first + " "+last
     
 if __name__=="__main__":
     app.run(debug=True)
